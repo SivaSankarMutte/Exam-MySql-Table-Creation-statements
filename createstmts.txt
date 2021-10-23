@@ -1,0 +1,56 @@
+
+create table faculty(
+fid int auto_increment,
+email varchar(120),
+psw varchar(30),
+primary key(fid)
+);
+
+
+create table ExamDetails(
+eid int auto_increment,
+examName varchar(120) not null,
+noOfQuestions int(3) not null,
+fid int,
+primary key(eid),
+foreign key(fid) references faculty(fid)
+);
+
+
+
+
+create table questions(
+qid int auto_increment,
+eid int,
+fid int,
+Question varchar(120),
+opt1 varchar(120),
+opt2 varchar(120),
+opt3 varchar(120),
+opt4 varchar(120),
+ans int,
+qmarks int default 1,
+primary key(qid),
+foreign key(eid) references examdetails(eid),
+foreign key(fid) references faculty(fid)
+);
+
+
+create table results(
+rid int auto_increment,
+eid int,
+semail varchar(50),
+marks_scored int default 0,
+primary key(rid),
+foreign key(eid) references examdetails(eid)
+);
+
+
+create table students(
+sid int auto_increment,
+regdno varchar(15),
+rollno int,
+semail varchar(50),
+spsw varchar(20),
+primary key(sid)
+);
